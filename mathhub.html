@@ -1,0 +1,2588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+<title>Grade 7 Maths Study Hub</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b1020;
+    color: #f3f4f6;
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    background: linear-gradient(135deg, #111827, #1e1b4b);
+    padding: 45px 20px;
+    text-align: center;
+    border-bottom: 1px solid #374151;
+}
+
+header h1 {
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #c7d2fe;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.search-box {
+    max-width: 750px;
+    margin: 25px auto 0;
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 15px 18px;
+    border-radius: 12px;
+    border: 1px solid #4b5563;
+    background: #111827;
+    color: white;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #818cf8;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 15, 30, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #374151;
+    padding: 10px;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: auto;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.nav-btn {
+    flex: 0 0 auto;
+    border: 1px solid #374151;
+    background: #111827;
+    color: #d1d5db;
+    padding: 11px 16px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: #4f46e5;
+    color: white;
+    border-color: #6366f1;
+}
+
+main {
+    width: min(1400px, 94%);
+    margin: 30px auto 70px;
+}
+
+.page {
+    display: none;
+    animation: fadeIn 0.25s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero {
+    padding: 35px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #1e293b, #172554);
+    border: 1px solid #374151;
+    margin-bottom: 25px;
+}
+
+.hero h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: #d1d5db;
+    font-size: 1.08rem;
+    max-width: 1000px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    color: #a5b4fc;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+}
+
+.card h4 {
+    color: #c4b5fd;
+    margin: 20px 0 8px;
+    font-size: 1.1rem;
+}
+
+.card p {
+    color: #d1d5db;
+    margin-bottom: 12px;
+}
+
+.card ul,
+.card ol {
+    margin: 10px 0 15px 25px;
+    color: #d1d5db;
+}
+
+.card li {
+    margin-bottom: 8px;
+}
+
+.big-explanation {
+    font-size: 1.05rem;
+}
+
+.formula {
+    background: #0f172a;
+    border: 1px solid #4f46e5;
+    padding: 18px;
+    border-radius: 12px;
+    margin: 15px 0;
+    font-size: 1.25rem;
+    text-align: center;
+    color: #ddd6fe;
+    font-weight: bold;
+}
+
+.example {
+    background: #172033;
+    border-left: 5px solid #818cf8;
+    padding: 20px;
+    margin: 18px 0;
+    border-radius: 8px;
+}
+
+.example strong {
+    color: #a5b4fc;
+}
+
+.warning {
+    background: #2a1f0d;
+    border-left: 5px solid #f59e0b;
+    padding: 18px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.tip {
+    background: #0c2a22;
+    border-left: 5px solid #10b981;
+    padding: 18px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.definition {
+    background: #1b1635;
+    border: 1px solid #7c3aed;
+    padding: 18px;
+    border-radius: 12px;
+    margin: 15px 0;
+}
+
+.definition strong {
+    color: #c4b5fd;
+}
+
+.quick-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.quick-nav button {
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #374151;
+    background: #111827;
+    color: white;
+}
+
+.quick-nav button:hover {
+    background: #312e81;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+th,
+td {
+    border: 1px solid #374151;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #1e1b4b;
+    color: #c7d2fe;
+}
+
+td {
+    color: #d1d5db;
+}
+
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+}
+
+.calculator label {
+    color: #d1d5db;
+    font-weight: bold;
+}
+
+.calculator input,
+.calculator select,
+.practice-input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 12px;
+    border-radius: 9px;
+    border: 1px solid #4b5563;
+    background: #0f172a;
+    color: white;
+}
+
+.primary-btn,
+.secondary-btn,
+.danger-btn {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 9px;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.primary-btn {
+    background: #4f46e5;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #6366f1;
+}
+
+.secondary-btn {
+    background: #374151;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background: #4b5563;
+}
+
+.danger-btn {
+    background: #991b1b;
+    color: white;
+}
+
+.result {
+    padding: 16px;
+    margin-top: 15px;
+    border-radius: 10px;
+    background: #172033;
+    border: 1px solid #4b5563;
+    min-height: 50px;
+}
+
+.correct {
+    color: #6ee7b7;
+}
+
+.incorrect {
+    color: #fca5a5;
+}
+
+.construction-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.tool-btn {
+    background: #1f2937;
+    color: white;
+    border: 1px solid #4b5563;
+    padding: 10px 13px;
+    border-radius: 8px;
+}
+
+.tool-btn.active {
+    background: #7c3aed;
+    border-color: #a78bfa;
+}
+
+.canvas-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 8px;
+}
+
+#constructionCanvas {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    touch-action: none;
+}
+
+.canvas-instructions {
+    margin-top: 15px;
+    background: #171b2e;
+    border: 1px solid #374151;
+    padding: 18px;
+    border-radius: 12px;
+}
+
+.step-number {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #4f46e5;
+    color: white;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.question {
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.question h4 {
+    margin-bottom: 12px;
+    color: #e0e7ff;
+}
+
+.option {
+    display: block;
+    padding: 9px;
+    border-radius: 8px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: #1f2937;
+}
+
+.feedback {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    display: none;
+}
+
+.feedback.show {
+    display: block;
+}
+
+.score-box {
+    position: sticky;
+    bottom: 15px;
+    background: rgba(17, 24, 39, 0.96);
+    backdrop-filter: blur(10px);
+    border: 1px solid #4f46e5;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.highlight {
+    outline: 2px solid #818cf8;
+    background: #1e1b4b;
+}
+
+.search-result {
+    padding: 12px;
+    border-bottom: 1px solid #374151;
+}
+
+.search-result:last-child {
+    border-bottom: none;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #9ca3af;
+    border-top: 1px solid #374151;
+}
+
+@media (max-width: 700px) {
+    header {
+        padding: 30px 15px;
+    }
+
+    main {
+        width: 96%;
+        margin-top: 20px;
+    }
+
+    .hero,
+    .card {
+        padding: 18px;
+    }
+
+    .card h3 {
+        font-size: 1.25rem;
+    }
+
+    .big-explanation {
+        font-size: 1rem;
+    }
+
+    .formula {
+        font-size: 1.05rem;
+        overflow-x: auto;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box button {
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 430px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav {
+        padding: 7px;
+    }
+
+    .nav-btn {
+        padding: 9px 12px;
+        font-size: 0.9rem;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .quick-nav {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📐 Grade 7 Maths Study Hub</h1>
+    <p>Learn the idea, understand the method, then practise it.</p>
+
+    <div class="search-box">
+        <input id="searchInput" type="text" placeholder="Search: circles, median, equations, constructions...">
+        <button class="primary-btn" onclick="searchHub()">Search</button>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <button class="nav-btn active" onclick="showPage('home', this)">🏠 Home</button>
+        <button class="nav-btn" onclick="showPage('circles', this)">⭕ Circles</button>
+        <button class="nav-btn" onclick="showPage('constructions', this)">🧭 Constructions</button>
+        <button class="nav-btn" onclick="showPage('unknown', this)">❓ Finding the Unknown</button>
+        <button class="nav-btn" onclick="showPage('area', this)">📐 Area & Perimeter</button>
+        <button class="nav-btn" onclick="showPage('statistics', this)">📊 Mean, Median & Range</button>
+        <button class="nav-btn" onclick="showPage('practice', this)">📝 Practice</button>
+    </div>
+</nav>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+    <div class="hero">
+        <h2>Welcome to your Maths Hub 👋</h2>
+        <p>
+            This website is designed to help you understand Grade 7 Mathematics instead of
+            simply memorising formulas. Each chapter explains what the idea means, why the
+            method works, how to solve questions step by step, and what mistakes to watch out for.
+        </p>
+
+        <div class="quick-nav">
+            <button onclick="showPage('circles')">⭕ Study Circles</button>
+            <button onclick="showPage('constructions')">🧭 Practise Constructions</button>
+            <button onclick="showPage('unknown')">❓ Learn Equations</button>
+            <button onclick="showPage('area')">📐 Study Area</button>
+            <button onclick="showPage('statistics')">📊 Study Statistics</button>
+            <button onclick="showPage('practice')">📝 Take Practice</button>
+        </div>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>⭕ Circles</h3>
+            <p>
+                Learn the difference between radius and diameter, understand circumference
+                and area, choose the correct formula, and solve questions where information
+                is missing.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🧭 Constructions</h3>
+            <p>
+                Learn how classical geometric constructions work using a ruler and compass.
+                Practise 90°, 45°, angle bisectors and perpendicular bisectors with the
+                interactive construction board.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>❓ Finding the Unknown</h3>
+            <p>
+                Learn how to use inverse operations to find a missing number in equations.
+                You will also see how the same idea works with perimeter, area and angles.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>📐 Area & Perimeter</h3>
+            <p>
+                Understand the difference between the distance around a shape and the amount
+                of space inside it. Learn formulas and how to find missing sides.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>📊 Mean, Median & Range</h3>
+            <p>
+                Learn three ways of describing a set of numbers. You will learn when to sort
+                numbers, how to find the middle, and how to calculate the spread.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>📝 Practice</h3>
+            <p>
+                Test yourself with mixed Grade 7 questions. After checking, you can see
+                explanations for questions you got wrong.
+            </p>
+        </div>
+
+    </div>
+
+    <div id="searchResults" class="card" style="display:none;">
+        <h3>🔎 Search Results</h3>
+        <div id="searchOutput"></div>
+    </div>
+
+</section>
+
+
+<!-- CIRCLES -->
+<section id="circles" class="page">
+
+    <div class="hero">
+        <h2>⭕ Circles</h2>
+        <p>
+            A circle is a perfectly round shape where every point on the edge is the same
+            distance from the centre. In this chapter you will learn how to calculate its
+            circumference and area, and how radius and diameter are connected.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>1. Radius and Diameter</h3>
+
+        <div class="definition">
+            <strong>Radius:</strong> The radius is the distance from the centre of a circle
+            to any point on its edge.
+        </div>
+
+        <div class="definition">
+            <strong>Diameter:</strong> The diameter is a straight line that goes from one
+            side of the circle to the other side and passes through the centre.
+        </div>
+
+        <p class="big-explanation">
+            Imagine cutting a pizza directly through the centre. The full distance from one
+            edge to the opposite edge is the <strong>diameter</strong>. If you only measure
+            from the centre to the edge, you have the <strong>radius</strong>.
+        </p>
+
+        <div class="formula">
+            d = 2r
+        </div>
+
+        <p>
+            Because the diameter contains two radii, the diameter is always twice the radius.
+            Therefore, if the radius is 6 cm, the diameter is 12 cm.
+        </p>
+
+        <div class="formula">
+            r = d ÷ 2
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+            A circle has a diameter of 18 cm. Find its radius.<br><br>
+            Radius = diameter ÷ 2<br>
+            Radius = 18 ÷ 2<br>
+            <strong>Radius = 9 cm</strong>
+        </div>
+
+        <div class="warning">
+            <strong>Common mistake:</strong> Do not confuse radius and diameter.
+            If a question gives you diameter but the formula needs radius, divide the
+            diameter by 2 first.
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>2. Circumference</h3>
+
+        <p class="big-explanation">
+            The circumference is the <strong>distance all the way around the outside of a
+            circle</strong>. Think of it like measuring the length of a piece of string
+            wrapped around the edge of the circle.
+        </p>
+
+        <div class="formula">
+            C = 2πr
+        </div>
+
+        <div class="formula">
+            C = πd
+        </div>
+
+        <p>
+            Both formulas calculate the same thing. Use the first one when you know the
+            radius and the second one when you know the diameter.
+        </p>
+
+        <h4>What is π?</h4>
+
+        <p>
+            π (pronounced "pi") is a special number that describes the relationship between
+            the circumference and diameter of every circle. In Grade 7 questions, you will
+            usually be told to use a particular approximation.
+        </p>
+
+        <table>
+            <tr>
+                <th>Approximation</th>
+                <th>When to use it</th>
+            </tr>
+            <tr>
+                <td>3.14</td>
+                <td>Use it when the question tells you to use 3.14 or does not specify another value.</td>
+            </tr>
+            <tr>
+                <td>22/7</td>
+                <td>Use it when the question specifically tells you to use 22/7.</td>
+            </tr>
+        </table>
+
+        <div class="example">
+            <strong>Example: Circumference using radius</strong><br><br>
+
+            Radius = 7 cm<br>
+            Use π = 22/7<br><br>
+
+            C = 2πr<br>
+            C = 2 × 22/7 × 7<br>
+            C = 44<br><br>
+
+            <strong>Answer: 44 cm</strong>
+        </div>
+
+        <div class="example">
+            <strong>Example: Circumference using diameter</strong><br><br>
+
+            Diameter = 10 cm<br>
+            Use π = 3.14<br><br>
+
+            C = πd<br>
+            C = 3.14 × 10<br>
+            C = 31.4<br><br>
+
+            <strong>Answer: 31.4 cm</strong>
+        </div>
+
+        <div class="tip">
+            <strong>Remember:</strong> Circumference is a length, so your answer should
+            normally have units such as cm, m or km — not square units.
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>3. Area of a Circle</h3>
+
+        <p class="big-explanation">
+            The area of a circle tells you how much space is inside the circle. Imagine
+            painting the entire inside of a circular table. The amount of surface you paint
+            is its area.
+        </p>
+
+        <div class="formula">
+            A = πr²
+        </div>
+
+        <p>
+            The small 2 means that you multiply the radius by itself.
+        </p>
+
+        <div class="formula">
+            r² = r × r
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            Radius = 5 cm<br>
+            π = 3.14<br><br>
+
+            A = πr²<br>
+            A = 3.14 × 5²<br>
+            A = 3.14 × 25<br>
+            A = 78.5<br><br>
+
+            <strong>Answer: 78.5 cm²</strong>
+        </div>
+
+        <div class="warning">
+            <strong>Very important:</strong> Area uses square units.
+            For example, cm² means square centimetres.
+            Circumference uses normal length units such as cm.
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>4. Choosing the Correct Circle Formula</h3>
+
+        <p>
+            One of the hardest parts of circle questions is not the calculation itself.
+            It is deciding which formula you need.
+        </p>
+
+        <table>
+            <tr>
+                <th>Question asks for...</th>
+                <th>Formula</th>
+                <th>What you need</th>
+            </tr>
+            <tr>
+                <td>Circumference</td>
+                <td>C = 2πr</td>
+                <td>Radius</td>
+            </tr>
+            <tr>
+                <td>Circumference</td>
+                <td>C = πd</td>
+                <td>Diameter</td>
+            </tr>
+            <tr>
+                <td>Area</td>
+                <td>A = πr²</td>
+                <td>Radius</td>
+            </tr>
+        </table>
+
+        <div class="tip">
+            <strong>Exam trick:</strong>
+            Look at the final word in the question. If it says "area", think
+            <strong>πr²</strong>. If it says "circumference", think
+            <strong>2πr or πd</strong>.
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>5. Finding a Missing Radius or Diameter</h3>
+
+        <p>
+            Sometimes the question does not give you the radius directly. You can use the
+            relationship between radius and diameter to find it.
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            A circle has a diameter of 24 cm. Find its radius.<br><br>
+
+            r = d ÷ 2<br>
+            r = 24 ÷ 2<br>
+            <strong>r = 12 cm</strong>
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            A circle has a radius of 8 cm. Find its diameter.<br><br>
+
+            d = 2r<br>
+            d = 2 × 8<br>
+            <strong>d = 16 cm</strong>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>🧮 Circle Calculator</h3>
+
+        <p>
+            Enter either a radius or diameter. The calculator will work out the other
+            measurement, circumference and area.
+        </p>
+
+        <div class="calculator">
+            <label>
+                Radius
+                <input id="circleRadius" type="number" step="any" placeholder="Example: 7">
+            </label>
+
+            <label>
+                Diameter
+                <input id="circleDiameter" type="number" step="any" placeholder="Example: 14">
+            </label>
+
+            <label>
+                π value
+                <select id="piChoice">
+                    <option value="3.14">3.14</option>
+                    <option value="22/7">22/7</option>
+                </select>
+            </label>
+        </div>
+
+        <button class="primary-btn" onclick="calculateCircle()">Calculate</button>
+
+        <div id="circleResult" class="result">
+            Your answer will appear here.
+        </div>
+    </div>
+
+</section>
+
+
+<!-- CONSTRUCTIONS -->
+<section id="constructions" class="page">
+
+    <div class="hero">
+        <h2>🧭 Geometric Constructions</h2>
+        <p>
+            Geometric construction means creating accurate shapes, lines and angles using
+            mathematical tools such as a compass and straightedge. The important idea is
+            that you are not simply drawing something that "looks right" — you are creating
+            it using steps that guarantee accuracy.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>🧰 Equipment You Need</h3>
+
+        <ul>
+            <li><strong>Compass:</strong> Used to draw arcs and circles and to transfer distances.</li>
+            <li><strong>Ruler / straightedge:</strong> Used to draw straight lines.</li>
+            <li><strong>Pencil:</strong> Used to make accurate construction marks.</li>
+            <li><strong>Protractor:</strong> Useful for checking an angle, although classical constructions can be done without one.</li>
+            <li><strong>Eraser:</strong> Keep construction marks light if your teacher wants a clean final diagram.</li>
+        </ul>
+
+        <div class="tip">
+            The compass is not only for drawing circles. One of its most important jobs is
+            to <strong>copy a distance exactly</strong>.
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>📐 Constructing a 90° Angle</h3>
+
+        <p class="big-explanation">
+            A 90° angle is called a <strong>right angle</strong>. The two lines meet at a
+            perfect corner. The key idea of the construction is to create equal distances
+            on both sides of the point and then use the compass to create an intersection.
+        </p>
+
+        <div class="example">
+            <span class="step-number">1</span>
+            Draw a straight line and mark the point where you want your 90° angle.
+            Label it A.
+            <br><br>
+
+            <span class="step-number">2</span>
+            Put the compass point on A and draw an arc that crosses the line on both sides
+            of A. Mark those points B and C.
+            <br><br>
+
+            <span class="step-number">3</span>
+            Without changing the compass width, put the compass on B and draw an arc above
+            the line.
+            <br><br>
+
+            <span class="step-number">4</span>
+            Keeping the same compass width, put the compass on C and draw another arc.
+            The two arcs will cross.
+            <br><br>
+
+            <span class="step-number">5</span>
+            Use your ruler to draw a line from A through the point where the arcs cross.
+            <br><br>
+
+            <strong>The new line is perpendicular to the original line, creating 90°.</strong>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>45° Angle</h3>
+
+        <p class="big-explanation">
+            A 45° angle can be created by first constructing a 90° angle and then
+            <strong>bisecting the 90° angle</strong>.
+        </p>
+
+        <div class="example">
+            <span class="step-number">1</span>
+            Construct a 90° angle.
+            <br><br>
+
+            <span class="step-number">2</span>
+            Place the compass point on the vertex of the 90° angle.
+            Draw an arc that crosses both rays.
+            <br><br>
+
+            <span class="step-number">3</span>
+            Put the compass on the first intersection and draw an arc inside the angle.
+            <br><br>
+
+            <span class="step-number">4</span>
+            Without changing the compass width, repeat from the second intersection.
+            The arcs meet.
+            <br><br>
+
+            <span class="step-number">5</span>
+            Draw a straight line from the vertex through the new intersection.
+            <br><br>
+
+            <strong>90° ÷ 2 = 45°.</strong>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>✂️ Angle Bisector</h3>
+
+        <p class="big-explanation">
+            To <strong>bisect</strong> something means to divide it into two equal parts.
+            Therefore, an angle bisector is a line that divides an angle into two angles
+            with exactly the same measurement.
+        </p>
+
+        <div class="example">
+            <span class="step-number">1</span>
+            Put the compass point on the vertex of the angle.
+            <br><br>
+
+            <span class="step-number">2</span>
+            Draw an arc that crosses both sides of the angle.
+            <br><br>
+
+            <span class="step-number">3</span>
+            Put the compass on the first intersection.
+            Draw an arc inside the angle.
+            <br><br>
+
+            <span class="step-number">4</span>
+            Without changing the compass width, repeat from the second intersection.
+            <br><br>
+
+            <span class="step-number">5</span>
+            Draw a straight line from the vertex through where the two small arcs meet.
+            <br><br>
+
+            <strong>The angle has now been divided into two equal angles.</strong>
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+            If the original angle is 80°:<br><br>
+            80° ÷ 2 = <strong>40°</strong><br><br>
+            Each smaller angle is 40°.
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>⊥ Perpendicular Bisector</h3>
+
+        <p class="big-explanation">
+            A perpendicular bisector does two jobs at the same time:
+        </p>
+
+        <ol>
+            <li>It cuts a line segment into two equal lengths.</li>
+            <li>It crosses the segment at exactly 90°.</li>
+        </ol>
+
+        <div class="definition">
+            If AB is 10 cm long, the perpendicular bisector crosses AB at its midpoint,
+            so each half is <strong>5 cm</strong>.
+        </div>
+
+        <div class="example">
+            <span class="step-number">1</span>
+            Draw line segment AB.
+            <br><br>
+
+            <span class="step-number">2</span>
+            Open your compass to more than half the length of AB.
+            <br><br>
+
+            <span class="step-number">3</span>
+            Put the compass point on A and draw arcs above and below the segment.
+            <br><br>
+
+            <span class="step-number">4</span>
+            Without changing the compass width, repeat from B.
+            <br><br>
+
+            <span class="step-number">5</span>
+            The arcs create two intersection points.
+            <br><br>
+
+            <span class="step-number">6</span>
+            Draw a straight line through those two intersection points.
+            <br><br>
+
+            <strong>
+                That line is the perpendicular bisector.
+                It creates two equal halves and a 90° angle.
+            </strong>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>🖥️ Digital Construction Board</h3>
+
+        <p>
+            This board lets you practise the construction ideas digitally. It is designed
+            to behave like a simplified mathematical construction tool.
+        </p>
+
+        <div class="warning">
+            <strong>Important:</strong> The digital board is for practising the method.
+            If your teacher asks you to perform a construction on paper, use your actual
+            ruler and compass.
+        </div>
+
+        <div class="construction-toolbar">
+            <button class="tool-btn active" onclick="setTool('line', this)">📏 Line</button>
+            <button class="tool-btn" onclick="setTool('circle', this)">⭕ Compass Circle</button>
+            <button class="tool-btn" onclick="setTool('right90', this)">📐 90°</button>
+            <button class="tool-btn" onclick="setTool('angle45', this)">📐 45°</button>
+            <button class="tool-btn" onclick="setTool('bisector', this)">✂️ Angle Bisector</button>
+            <button class="tool-btn" onclick="setTool('perp', this)">⊥ Perpendicular Bisector</button>
+            <button class="secondary-btn" onclick="undoConstruction()">↩ Undo</button>
+            <button class="danger-btn" onclick="clearConstruction()">🗑 Clear</button>
+        </div>
+
+        <div class="canvas-wrapper">
+            <canvas id="constructionCanvas" width="1000" height="600"></canvas>
+        </div>
+
+        <div class="canvas-instructions">
+            <h3 id="constructionToolTitle">📏 Line Tool</h3>
+            <p id="constructionToolInstructions">
+                Click two points on the board. A straight line will be drawn between them.
+            </p>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- UNKNOWN -->
+<section id="unknown" class="page">
+
+    <div class="hero">
+        <h2>❓ Finding the Unknown</h2>
+        <p>
+            An unknown is a value that we do not know yet. In algebra, we often use a letter
+            such as x to represent it. Your job is to find the number that makes the equation
+            true.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>What Does "Solve" Mean?</h3>
+
+        <p class="big-explanation">
+            When you solve an equation, you are finding the value of the unknown.
+            The most important rule is that whatever operation you perform on one side,
+            you must perform on the other side as well.
+        </p>
+
+        <div class="formula">
+            Left side = Right side
+        </div>
+
+        <p>
+            Think of an equation like a balanced scale. If you add 5 to one side but not
+            the other, the scale becomes unbalanced. Algebra works in the same way.
+        </p>
+    </div>
+
+
+    <div class="card">
+        <h3>1. Addition Equations</h3>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            x + 7 = 15<br><br>
+
+            We want x by itself. The opposite of +7 is -7.<br><br>
+
+            x + 7 - 7 = 15 - 7<br>
+            x = 8<br><br>
+
+            <strong>Answer: x = 8</strong>
+        </div>
+
+        <div class="tip">
+            Addition and subtraction are inverse operations.
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>2. Subtraction Equations</h3>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            x - 6 = 14<br><br>
+
+            The opposite of subtracting 6 is adding 6.<br><br>
+
+            x - 6 + 6 = 14 + 6<br>
+            x = 20<br><br>
+
+            <strong>Answer: x = 20</strong>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>3. Multiplication Equations</h3>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            4x = 28<br><br>
+
+            4x means 4 × x.<br>
+            The opposite of multiplying by 4 is dividing by 4.<br><br>
+
+            4x ÷ 4 = 28 ÷ 4<br>
+            x = 7<br><br>
+
+            <strong>Answer: x = 7</strong>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>4. Division Equations</h3>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            x ÷ 5 = 9<br><br>
+
+            The opposite of dividing by 5 is multiplying by 5.<br><br>
+
+            x ÷ 5 × 5 = 9 × 5<br>
+            x = 45<br><br>
+
+            <strong>Answer: x = 45</strong>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>5. Two-Step Equations</h3>
+
+        <p>
+            Some equations require more than one operation. Work backwards and undo the
+            operations in the reverse order.
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            2x + 5 = 17<br><br>
+
+            First remove the +5:<br>
+            2x = 12<br><br>
+
+            Then divide by 2:<br>
+            x = 6<br><br>
+
+            <strong>Answer: x = 6</strong>
+        </div>
+
+        <div class="tip">
+            A useful habit is to check your answer by putting it back into the original
+            equation. If x = 6:<br><br>
+            2(6) + 5 = 12 + 5 = 17 ✔️
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>6. Finding Unknowns in Geometry</h3>
+
+        <p>
+            The same idea works outside normal equations. Geometry questions often give you
+            a formula and ask you to find a missing measurement.
+        </p>
+
+        <div class="example">
+            <strong>Rectangle example:</strong><br><br>
+
+            Perimeter = 30 cm<br>
+            Length = 10 cm<br>
+            Width = ?<br><br>
+
+            P = 2(l + w)<br><br>
+
+            30 = 2(10 + w)<br>
+            15 = 10 + w<br>
+            w = 5<br><br>
+
+            <strong>Width = 5 cm</strong>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- AREA -->
+<section id="area" class="page">
+
+    <div class="hero">
+        <h2>📐 Area & Perimeter</h2>
+        <p>
+            Perimeter measures the distance around a shape. Area measures the amount of
+            surface inside the shape. They are different measurements and use different
+            formulas and units.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Perimeter vs Area</h3>
+
+        <div class="definition">
+            <strong>Perimeter:</strong> The total distance around the outside of a shape.
+        </div>
+
+        <div class="definition">
+            <strong>Area:</strong> The amount of space inside a shape.
+        </div>
+
+        <div class="example">
+            Imagine a rectangular garden.<br><br>
+            If you put a fence around it, you need the <strong>perimeter</strong>.<br>
+            If you want to know how much grass to plant inside it, you need the
+            <strong>area</strong>.
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>Rectangle</h3>
+
+        <div class="formula">
+            Perimeter = 2(l + w)
+        </div>
+
+        <div class="formula">
+            Area = l × w
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            Length = 8 cm<br>
+            Width = 5 cm<br><br>
+
+            Perimeter = 2(8 + 5)<br>
+            Perimeter = 26 cm<br><br>
+
+            Area = 8 × 5<br>
+            Area = 40 cm²
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>Square</h3>
+
+        <p>
+            A square has four equal sides, so if one side has length s, all four sides
+            have length s.
+        </p>
+
+        <div class="formula">
+            Perimeter = 4s
+        </div>
+
+        <div class="formula">
+            Area = s²
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            Side = 7 cm<br><br>
+
+            Perimeter = 4 × 7 = <strong>28 cm</strong><br>
+            Area = 7 × 7 = <strong>49 cm²</strong>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>Triangle</h3>
+
+        <div class="formula">
+            Area = ½ × base × height
+        </div>
+
+        <p>
+            The height must be the perpendicular distance from the base to the opposite
+            vertex. It is not necessarily one of the sloping sides.
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            Base = 10 cm<br>
+            Height = 6 cm<br><br>
+
+            Area = ½ × 10 × 6<br>
+            Area = 30 cm²
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>Units Matter!</h3>
+
+        <p>
+            Perimeter is a length, so it uses units such as cm, m or km.
+            Area measures a surface, so it uses square units such as cm² or m².
+        </p>
+
+        <table>
+            <tr>
+                <th>Measurement</th>
+                <th>Example unit</th>
+            </tr>
+            <tr>
+                <td>Perimeter</td>
+                <td>cm</td>
+            </tr>
+            <tr>
+                <td>Area</td>
+                <td>cm²</td>
+            </tr>
+        </table>
+
+        <div class="warning">
+            Writing "40 cm" instead of "40 cm²" for an area answer can lose marks.
+        </div>
+    </div>
+
+</section>
+
+
+<!-- STATISTICS -->
+<section id="statistics" class="page">
+
+    <div class="hero">
+        <h2>📊 Mean, Median & Range</h2>
+        <p>
+            These three measurements help us describe a collection of numbers.
+            They each tell us something different, so it is important not to mix them up.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Mean</h3>
+
+        <p class="big-explanation">
+            The mean is often called the average. To find it, add every number together
+            and divide by how many numbers there are.
+        </p>
+
+        <div class="formula">
+            Mean = Sum of all values ÷ Number of values
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong><br><br>
+
+            Numbers: 4, 6, 8<br><br>
+
+            Step 1: Add them.<br>
+            4 + 6 + 8 = 18<br><br>
+
+            Step 2: Count them.<br>
+            There are 3 numbers.<br><br>
+
+            Step 3: Divide.<br>
+            18 ÷ 3 = 6<br><br>
+
+            <strong>Mean = 6</strong>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>Median</h3>
+
+        <p class="big-explanation">
+            The median is the middle number when the values are arranged in order.
+            This means you should almost always <strong>sort the numbers first</strong>.
+        </p>
+
+        <div class="example">
+            <strong>Example with an odd number of values:</strong><br><br>
+
+            8, 3, 7, 2, 5<br><br>
+
+            Sort them:<br>
+            2, 3, 5, 7, 8<br><br>
+
+            The middle number is 5.<br><br>
+
+            <strong>Median = 5</strong>
+        </div>
+
+        <h4>What if there are an even number of values?</h4>
+
+        <p>
+            If there are two middle numbers, add those two numbers and divide by 2.
+        </p>
+
+        <div class="example">
+            Numbers: 2, 4, 6, 8<br><br>
+
+            The middle numbers are 4 and 6.<br><br>
+
+            Median = (4 + 6) ÷ 2<br>
+            Median = 10 ÷ 2<br>
+            <strong>Median = 5</strong>
+        </div>
+
+        <div class="warning">
+            <strong>Common mistake:</strong> Do not find the median before sorting the numbers.
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>Range</h3>
+
+        <p class="big-explanation">
+            The range tells us how spread out the numbers are. It is simply the biggest
+            value minus the smallest value.
+        </p>
+
+        <div class="formula">
+            Range = Largest value − Smallest value
+        </div>
+
+        <div class="example">
+            Numbers: 4, 12, 9, 18<br><br>
+
+            Largest = 18<br>
+            Smallest = 4<br><br>
+
+            Range = 18 − 4<br>
+            <strong>Range = 14</strong>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3>Quick Comparison</h3>
+
+        <table>
+            <tr>
+                <th>Measurement</th>
+                <th>How to calculate</th>
+            </tr>
+            <tr>
+                <td>Mean</td>
+                <td>Add all values, then divide by the number of values.</td>
+            </tr>
+            <tr>
+                <td>Median</td>
+                <td>Sort the values and find the middle.</td>
+            </tr>
+            <tr>
+                <td>Range</td>
+                <td>Largest − smallest.</td>
+            </tr>
+        </table>
+    </div>
+
+</section>
+
+
+<!-- PRACTICE -->
+<section id="practice" class="page">
+
+    <div class="hero">
+        <h2>📝 Mixed Practice</h2>
+        <p>
+            Try these questions without looking back at the chapters first.
+            When you finish, press Check Answers to see your score and explanations.
+        </p>
+    </div>
+
+    <div id="practiceQuestions"></div>
+
+    <button class="primary-btn" onclick="checkPractice()">
+        ✅ Check Answers
+    </button>
+
+    <div id="practiceScore" class="score-box" style="display:none;"></div>
+
+</section>
+
+</main>
+
+<div class="footer">
+    Grade 7 Maths Study Hub • Built as a single HTML file
+</div>
+
+
+<script>
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+function showPage(id, clickedButton = null) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    const page = document.getElementById(id);
+
+    if (page) {
+        page.classList.add("active");
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    document.querySelectorAll(".nav-btn").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    if (clickedButton) {
+        clickedButton.classList.add("active");
+    } else {
+        const buttons = document.querySelectorAll(".nav-btn");
+
+        buttons.forEach(button => {
+            if (button.getAttribute("onclick") &&
+                button.getAttribute("onclick").includes("'" + id + "'")) {
+                button.classList.add("active");
+            }
+        });
+    }
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchHub() {
+
+    const input = document.getElementById("searchInput");
+    const query = input.value.toLowerCase().trim();
+
+    const resultsBox = document.getElementById("searchResults");
+    const output = document.getElementById("searchOutput");
+
+    if (!query) {
+        resultsBox.style.display = "none";
+        return;
+    }
+
+    const topics = [
+        {
+            name: "⭕ Circles",
+            keywords: "circle circles radius diameter circumference area pi",
+            page: "circles"
+        },
+        {
+            name: "🧭 Constructions",
+            keywords: "construction compass ruler 90 45 angle bisector perpendicular",
+            page: "constructions"
+        },
+        {
+            name: "❓ Finding the Unknown",
+            keywords: "unknown algebra equation x solve inverse operation",
+            page: "unknown"
+        },
+        {
+            name: "📐 Area & Perimeter",
+            keywords: "area perimeter rectangle square triangle shape",
+            page: "area"
+        },
+        {
+            name: "📊 Mean, Median & Range",
+            keywords: "mean median range average statistics numbers",
+            page: "statistics"
+        },
+        {
+            name: "📝 Practice",
+            keywords: "practice questions test quiz",
+            page: "practice"
+        }
+    ];
+
+    const matches = topics.filter(topic =>
+        topic.keywords.includes(query) ||
+        topic.name.toLowerCase().includes(query)
+    );
+
+    if (matches.length === 0) {
+        output.innerHTML = `
+            <p>No exact topic found.</p>
+            <p>Try searching for words such as:
+            <strong>circle, radius, compass, equation, area, mean, median</strong>.</p>
+        `;
+    } else {
+        output.innerHTML = matches.map(topic => `
+            <div class="search-result">
+                <button class="primary-btn" onclick="showPage('${topic.page}')">
+                    ${topic.name}
+                </button>
+            </div>
+        `).join("");
+    }
+
+    resultsBox.style.display = "block";
+}
+
+
+/* =========================
+   CIRCLE CALCULATOR
+========================= */
+
+function calculateCircle() {
+
+    let radius = parseFloat(document.getElementById("circleRadius").value);
+    let diameter = parseFloat(document.getElementById("circleDiameter").value);
+
+    const piChoice = document.getElementById("piChoice").value;
+
+    let pi;
+
+    if (piChoice === "22/7") {
+        pi = 22 / 7;
+    } else {
+        pi = 3.14;
+    }
+
+    if (isNaN(radius) && isNaN(diameter)) {
+        document.getElementById("circleResult").innerHTML =
+            `<span class="incorrect">Enter a radius or diameter first.</span>`;
+        return;
+    }
+
+    if (!isNaN(radius)) {
+        diameter = radius * 2;
+    } else {
+        radius = diameter / 2;
+    }
+
+    const circumference = 2 * pi * radius;
+    const area = pi * radius * radius;
+
+    document.getElementById("circleResult").innerHTML = `
+        <strong>Radius:</strong> ${radius.toFixed(2)}<br>
+        <strong>Diameter:</strong> ${diameter.toFixed(2)}<br>
+        <strong>Circumference:</strong> ${circumference.toFixed(2)}<br>
+        <strong>Area:</strong> ${area.toFixed(2)}
+    `;
+}
+
+
+/* =========================
+   CONSTRUCTION BOARD
+========================= */
+
+const canvas = document.getElementById("constructionCanvas");
+const ctx = canvas.getContext("2d");
+
+let currentTool = "line";
+let constructionClicks = [];
+let constructionObjects = [];
+
+const toolInfo = {
+    line: {
+        title: "📏 Line Tool",
+        instructions: "Click two points on the board. A straight line will be drawn between them."
+    },
+
+    circle: {
+        title: "⭕ Compass Circle",
+        instructions: "Click the centre of your circle, then click a second point to set the compass radius."
+    },
+
+    right90: {
+        title: "📐 90° Construction",
+        instructions: "Click the vertex, then click a second point to define the first ray. The board creates a perpendicular 90° ray."
+    },
+
+    angle45: {
+        title: "📐 45° Construction",
+        instructions: "Click the vertex, then click a second point to define the first ray. The board constructs a 45° ray."
+    },
+
+    bisector: {
+        title: "✂️ Angle Bisector",
+        instructions: "Click the vertex, then a point on the first ray, then a point on the second ray."
+    },
+
+    perp: {
+        title: "⊥ Perpendicular Bisector",
+        instructions: "Click the two endpoints of a line segment. The board creates its midpoint, equal-radius arcs and perpendicular bisector."
+    }
+};
+
+function setTool(tool, button) {
+
+    currentTool = tool;
+    constructionClicks = [];
+
+    document.querySelectorAll(".tool-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    if (button) {
+        button.classList.add("active");
+    }
+
+    document.getElementById("constructionToolTitle").textContent =
+        toolInfo[tool].title;
+
+    document.getElementById("constructionToolInstructions").textContent =
+        toolInfo[tool].instructions;
+}
+
+function distance(a, b) {
+    return Math.sqrt(
+        Math.pow(b.x - a.x, 2) +
+        Math.pow(b.y - a.y, 2)
+    );
+}
+
+function midpoint(a, b) {
+    return {
+        x: (a.x + b.x) / 2,
+        y: (a.y + b.y) / 2
+    };
+}
+
+function normalize(v) {
+
+    const length = Math.sqrt(v.x * v.x + v.y * v.y);
+
+    if (length === 0) {
+        return {x: 0, y: 0};
+    }
+
+    return {
+        x: v.x / length,
+        y: v.y / length
+    };
+}
+
+function drawGrid() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.strokeStyle = "#e5e7eb";
+    ctx.lineWidth = 1;
+
+    for (let x = 0; x <= canvas.width; x += 25) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+    }
+
+    for (let y = 0; y <= canvas.height; y += 25) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+    }
+}
+
+function drawPoint(p, label = "") {
+
+    ctx.fillStyle = "#dc2626";
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
+    ctx.fill();
+
+    if (label) {
+        ctx.fillStyle = "#111827";
+        ctx.font = "bold 15px Arial";
+        ctx.fillText(label, p.x + 8, p.y - 8);
+    }
+}
+
+function drawLine(a, b, dashed = false) {
+
+    ctx.save();
+
+    if (dashed) {
+        ctx.setLineDash([8, 6]);
+    }
+
+    ctx.strokeStyle = "#2563eb";
+    ctx.lineWidth = 3;
+
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.stroke();
+
+    ctx.restore();
+}
+
+function drawRay(start, direction, length = 220, color = "#7c3aed") {
+
+    const end = {
+        x: start.x + direction.x * length,
+        y: start.y + direction.y * length
+    };
+
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3;
+
+    ctx.beginPath();
+    ctx.moveTo(start.x, start.y);
+    ctx.lineTo(end.x, end.y);
+    ctx.stroke();
+
+    return end;
+}
+
+function drawCircle(center, radius, construction = false) {
+
+    ctx.save();
+
+    ctx.strokeStyle = construction ? "#9333ea" : "#2563eb";
+    ctx.lineWidth = construction ? 2 : 3;
+
+    if (construction) {
+        ctx.setLineDash([7, 5]);
+    }
+
+    ctx.beginPath();
+    ctx.arc(center.x, center.y, radius, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.restore();
+}
+
+function drawRightAngleMarker(vertex, direction1, direction2) {
+
+    const size = 25;
+
+    const p1 = {
+        x: vertex.x + direction1.x * size,
+        y: vertex.y + direction1.y * size
+    };
+
+    const p2 = {
+        x: p1.x + direction2.x * size,
+        y: p1.y + direction2.y * size
+    };
+
+    const p3 = {
+        x: vertex.x + direction2.x * size,
+        y: vertex.y + direction2.y * size
+    };
+
+    ctx.strokeStyle = "#dc2626";
+    ctx.lineWidth = 3;
+
+    ctx.beginPath();
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+    ctx.lineTo(p3.x, p3.y);
+    ctx.stroke();
+}
+
+function drawBisector(obj) {
+
+    const v = obj.vertex;
+
+    const u1 = normalize({
+        x: obj.p1.x - v.x,
+        y: obj.p1.y - v.y
+    });
+
+    const u2 = normalize({
+        x: obj.p2.x - v.x,
+        y: obj.p2.y - v.y
+    });
+
+    let bisector = normalize({
+        x: u1.x + u2.x,
+        y: u1.y + u2.y
+    });
+
+    if (bisector.x === 0 && bisector.y === 0) {
+        return;
+    }
+
+    drawRay(v, bisector, 260, "#16a34a");
+
+    drawPoint(v, "A");
+    drawPoint(obj.p1, "B");
+    drawPoint(obj.p2, "C");
+}
+
+function drawPerpendicularBisector(obj) {
+
+    const a = obj.a;
+    const b = obj.b;
+
+    const mid = midpoint(a, b);
+    const len = distance(a, b);
+
+    const direction = normalize({
+        x: -(b.y - a.y),
+        y: b.x - a.x
+    });
+
+    drawLine(a, b, false);
+
+    const top = {
+        x: mid.x + direction.x * 300,
+        y: mid.y + direction.y * 300
+    };
+
+    const bottom = {
+        x: mid.x - direction.x * 300,
+        y: mid.y - direction.y * 300
+    };
+
+    drawLine(top, bottom, false);
+
+    drawCircle(a, len * 0.75, true);
+    drawCircle(b, len * 0.75, true);
+
+    ctx.fillStyle = "#dc2626";
+    ctx.beginPath();
+    ctx.arc(mid.x, mid.y, 6, 0, Math.PI * 2);
+    ctx.fill();
+
+    drawPoint(a, "A");
+    drawPoint(b, "B");
+
+    ctx.fillStyle = "#16a34a";
+    ctx.font = "bold 15px Arial";
+    ctx.fillText("Midpoint", mid.x + 10, mid.y - 10);
+
+    drawRightAngleMarker(
+        mid,
+        normalize({x: b.x - a.x, y: b.y - a.y}),
+        direction
+    );
+}
+
+function drawConstructionObject(obj) {
+
+    if (obj.type === "line") {
+        drawLine(obj.a, obj.b);
+        drawPoint(obj.a, "A");
+        drawPoint(obj.b, "B");
+    }
+
+    if (obj.type === "circle") {
+        drawCircle(obj.center, obj.radius);
+        drawPoint(obj.center, "O");
+    }
+
+    if (obj.type === "right90") {
+
+        const v = obj.vertex;
+
+        const baseDirection = normalize({
+            x: obj.point.x - v.x,
+            y: obj.point.y - v.y
+        });
+
+        const perpendicular = {
+            x: -baseDirection.y,
+            y: baseDirection.x
+        };
+
+        drawRay(v, baseDirection, 260, "#2563eb");
+        drawRay(v, perpendicular, 260, "#7c3aed");
+
+        drawRightAngleMarker(v, baseDirection, perpendicular);
+
+        drawPoint(v, "A");
+    }
+
+    if (obj.type === "angle45") {
+
+        const v = obj.vertex;
+
+        const base = normalize({
+            x: obj.point.x - v.x,
+            y: obj.point.y - v.y
+        });
+
+        const perpendicular = {
+            x: -base.y,
+            y: base.x
+        };
+
+        const fortyFive = normalize({
+            x: base.x + perpendicular.x,
+            y: base.y + perpendicular.y
+        });
+
+        drawRay(v, base, 240, "#2563eb");
+        drawRay(v, perpendicular, 240, "#94a3b8");
+        drawRay(v, fortyFive, 240, "#16a34a");
+
+        drawPoint(v, "A");
+    }
+
+    if (obj.type === "bisector") {
+        drawBisector(obj);
+    }
+
+    if (obj.type === "perp") {
+        drawPerpendicularBisector(obj);
+    }
+}
+
+function redrawConstructionBoard() {
+
+    drawGrid();
+
+    constructionObjects.forEach(drawConstructionObject);
+
+    constructionClicks.forEach((point, index) => {
+        drawPoint(point, "P" + (index + 1));
+    });
+}
+
+canvas.addEventListener("click", function(event) {
+
+    const rect = canvas.getBoundingClientRect();
+
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    const point = {
+        x: (event.clientX - rect.left) * scaleX,
+        y: (event.clientY - rect.top) * scaleY
+    };
+
+    constructionClicks.push(point);
+
+    let requiredClicks = 2;
+
+    if (currentTool === "bisector") {
+        requiredClicks = 3;
+    }
+
+    if (constructionClicks.length < requiredClicks) {
+        redrawConstructionBoard();
+        return;
+    }
+
+    if (currentTool === "line") {
+
+        constructionObjects.push({
+            type: "line",
+            a: constructionClicks[0],
+            b: constructionClicks[1]
+        });
+    }
+
+    if (currentTool === "circle") {
+
+        constructionObjects.push({
+            type: "circle",
+            center: constructionClicks[0],
+            radius: distance(
+                constructionClicks[0],
+                constructionClicks[1]
+            )
+        });
+    }
+
+    if (currentTool === "right90") {
+
+        constructionObjects.push({
+            type: "right90",
+            vertex: constructionClicks[0],
+            point: constructionClicks[1]
+        });
+    }
+
+    if (currentTool === "angle45") {
+
+        constructionObjects.push({
+            type: "angle45",
+            vertex: constructionClicks[0],
+            point: constructionClicks[1]
+        });
+    }
+
+    if (currentTool === "bisector") {
+
+        constructionObjects.push({
+            type: "bisector",
+            vertex: constructionClicks[0],
+            p1: constructionClicks[1],
+            p2: constructionClicks[2]
+        });
+    }
+
+    if (currentTool === "perp") {
+
+        constructionObjects.push({
+            type: "perp",
+            a: constructionClicks[0],
+            b: constructionClicks[1]
+        });
+    }
+
+    constructionClicks = [];
+
+    redrawConstructionBoard();
+});
+
+function undoConstruction() {
+
+    constructionObjects.pop();
+    constructionClicks = [];
+
+    redrawConstructionBoard();
+}
+
+function clearConstruction() {
+
+    constructionObjects = [];
+    constructionClicks = [];
+
+    redrawConstructionBoard();
+}
+
+redrawConstructionBoard();
+
+
+/* =========================
+   PRACTICE QUESTIONS
+========================= */
+
+const practiceData = [
+
+    {
+        question: "A circle has a radius of 7 cm. Using π = 22/7, what is its circumference?",
+        options: ["14 cm", "22 cm", "44 cm", "49 cm"],
+        answer: 2,
+        explanation: "Use C = 2πr. So C = 2 × 22/7 × 7 = 44 cm."
+    },
+
+    {
+        question: "A circle has a radius of 5 cm. Using π = 3.14, what is its area?",
+        options: ["15.7 cm²", "31.4 cm²", "78.5 cm²", "157 cm²"],
+        answer: 2,
+        explanation: "Area = πr². So 3.14 × 5² = 3.14 × 25 = 78.5 cm²."
+    },
+
+    {
+        question: "A circle has a diameter of 18 cm. What is its radius?",
+        options: ["6 cm", "9 cm", "18 cm", "36 cm"],
+        answer: 1,
+        explanation: "Radius = diameter ÷ 2. Therefore 18 ÷ 2 = 9 cm."
+    },
+
+    {
+        question: "A rectangle has length 8 cm and width 5 cm. What is its perimeter?",
+        options: ["13 cm", "26 cm", "40 cm", "80 cm"],
+        answer: 1,
+        explanation: "Perimeter = 2(l + w) = 2(8 + 5) = 26 cm."
+    },
+
+    {
+        question: "A rectangle is 9 cm long and 4 cm wide. What is its area?",
+        options: ["13 cm²", "26 cm²", "36 cm²", "72 cm²"],
+        answer: 2,
+        explanation: "Area = length × width = 9 × 4 = 36 cm²."
+    },
+
+    {
+        question: "A triangle has a base of 10 cm and height of 6 cm. What is its area?",
+        options: ["16 cm²", "30 cm²", "60 cm²", "120 cm²"],
+        answer: 1,
+        explanation: "Area = ½ × base × height = ½ × 10 × 6 = 30 cm²."
+    },
+
+    {
+        question: "What is the perimeter of a square with side length 7 cm?",
+        options: ["14 cm", "21 cm", "28 cm", "49 cm"],
+        answer: 2,
+        explanation: "A square has four equal sides. Perimeter = 4 × 7 = 28 cm."
+    },
+
+    {
+        question: "Solve: x + 7 = 15",
+        options: ["6", "7", "8", "22"],
+        answer: 2,
+        explanation: "Subtract 7 from both sides: x = 15 − 7 = 8."
+    },
+
+    {
+        question: "Solve: 4x = 28",
+        options: ["5", "6", "7", "8"],
+        answer: 2,
+        explanation: "Divide both sides by 4: x = 28 ÷ 4 = 7."
+    },
+
+    {
+        question: "Solve: 2x + 3 = 15",
+        options: ["5", "6", "7", "9"],
+        answer: 1,
+        explanation: "Subtract 3 first: 2x = 12. Then divide by 2: x = 6."
+    },
+
+    {
+        question: "Solve: x ÷ 5 = 9",
+        options: ["4", "14", "45", "50"],
+        answer: 2,
+        explanation: "Multiply both sides by 5: x = 9 × 5 = 45."
+    },
+
+    {
+        question: "What is the mean of 4, 6 and 8?",
+        options: ["4", "5", "6", "8"],
+        answer: 2,
+        explanation: "Add the values: 4 + 6 + 8 = 18. Divide by 3: 18 ÷ 3 = 6."
+    },
+
+    {
+        question: "What is the median of 3, 8, 5, 2 and 7?",
+        options: ["3", "5", "7", "8"],
+        answer: 1,
+        explanation: "Sort the numbers: 2, 3, 5, 7, 8. The middle value is 5."
+    },
+
+    {
+        question: "What is the range of 12, 4, 9 and 18?",
+        options: ["10", "12", "14", "18"],
+        answer: 2,
+        explanation: "Range = largest − smallest = 18 − 4 = 14."
+    },
+
+    {
+        question: "An angle of 80° is bisected. What is each smaller angle?",
+        options: ["20°", "30°", "40°", "80°"],
+        answer: 2,
+        explanation: "Bisect means divide into two equal parts. 80° ÷ 2 = 40°."
+    },
+
+    {
+        question: "What angle does a perpendicular line make with another line?",
+        options: ["45°", "60°", "90°", "180°"],
+        answer: 2,
+        explanation: "Perpendicular lines meet at exactly 90°."
+    },
+
+    {
+        question: "What does a perpendicular bisector do?",
+        options: [
+            "Only doubles a line",
+            "Divides a line into equal halves and crosses it at 90°",
+            "Creates a 45° angle only",
+            "Makes the line longer"
+        ],
+        answer: 1,
+        explanation: "A perpendicular bisector creates two equal halves and crosses the original line at 90°."
+    },
+
+    {
+        question: "What is the diameter of a circle with radius 10 cm?",
+        options: ["5 cm", "10 cm", "20 cm", "100 cm"],
+        answer: 2,
+        explanation: "Diameter = 2 × radius = 2 × 10 = 20 cm."
+    },
+
+    {
+        question: "Using π = 3.14, what is the circumference of a circle with diameter 20 cm?",
+        options: ["31.4 cm", "62.8 cm", "125.6 cm", "400 cm"],
+        answer: 1,
+        explanation: "C = πd = 3.14 × 20 = 62.8 cm."
+    },
+
+    {
+        question: "Using π = 3.14, what is the area of a circle with diameter 10 cm?",
+        options: ["31.4 cm²", "50 cm²", "78.5 cm²", "314 cm²"],
+        answer: 2,
+        explanation: "First find radius: 10 ÷ 2 = 5. Then A = 3.14 × 5² = 78.5 cm²."
+    }
+];
+
+function loadPractice() {
+
+    const container = document.getElementById("practiceQuestions");
+
+    container.innerHTML = practiceData.map((q, index) => {
+
+        return `
+            <div class="question">
+                <h4>${index + 1}. ${q.question}</h4>
+
+                ${q.options.map((option, optionIndex) => `
+                    <label class="option">
+                        <input
+                            type="radio"
+                            name="question${index}"
+                            value="${optionIndex}">
+                        ${option}
+                    </label>
+                `).join("")}
+
+                <div id="feedback${index}" class="feedback"></div>
+            </div>
+        `;
+
+    }).join("");
+}
+
+function checkPractice() {
+
+    let score = 0;
+
+    practiceData.forEach((q, index) => {
+
+        const selected = document.querySelector(
+            `input[name="question${index}"]:checked`
+        );
+
+        const feedback = document.getElementById(`feedback${index}`);
+
+        feedback.classList.add("show");
+
+        if (!selected) {
+
+            feedback.className = "feedback show incorrect";
+
+            feedback.innerHTML = `
+                <strong>⚠️ No answer selected.</strong><br>
+                Correct answer: ${q.options[q.answer]}<br>
+                <br>
+                <strong>Explanation:</strong> ${q.explanation}
+            `;
+
+            return;
+        }
+
+        if (parseInt(selected.value) === q.answer) {
+
+            score++;
+
+            feedback.className = "feedback show correct";
+
+            feedback.innerHTML = `
+                <strong>✅ Correct!</strong><br>
+                ${q.explanation}
+            `;
+
+        } else {
+
+            feedback.className = "feedback show incorrect";
+
+            feedback.innerHTML = `
+                <strong>❌ Incorrect.</strong><br>
+                Correct answer: <strong>${q.options[q.answer]}</strong><br>
+                <br>
+                <strong>How to avoid this mistake:</strong><br>
+                ${q.explanation}
+            `;
+        }
+    });
+
+    const percentage = Math.round(
+        (score / practiceData.length) * 100
+    );
+
+    const scoreBox = document.getElementById("practiceScore");
+
+    scoreBox.style.display = "block";
+
+    scoreBox.innerHTML = `
+        <h3>🏆 Your Score</h3>
+        <p style="font-size:1.4rem;">
+            ${score} / ${practiceData.length}
+        </p>
+        <p>${percentage}%</p>
+        <p>
+            Scroll through the questions to see explanations for your answers.
+        </p>
+    `;
+
+    scoreBox.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+loadPractice();
+
+
+/* =========================
+   ENTER KEY SEARCH
+========================= */
+
+document.getElementById("searchInput").addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        searchHub();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
